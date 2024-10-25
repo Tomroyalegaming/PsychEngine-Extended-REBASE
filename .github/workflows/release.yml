@@ -110,7 +110,7 @@ jobs:
           path: export\release\windows\bin\*.zip
           if-no-files-found: error      
   Releaser:
-    needs: [Android, Windows]
+    needs: [Android,Android-Weekend, Windows]
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
