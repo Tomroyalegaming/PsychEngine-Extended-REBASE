@@ -80,7 +80,7 @@ class FPSCounter extends TextField
 	{
 		text = 
 		'FPS: $currentFPS' + 
-		'\nPsych Extended 1.0.0-bugfix' + 
+		'\nPsychExtended 1.0.0' + 
 		'\nMemory: ${flixel.util.FlxStringUtil.formatBytes(memoryMegas)}' +
 		os;
 

@@ -39,6 +39,44 @@ jobs:
           name: androidBuild
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
           if-no-files-found: warn
+  Android-Weekend:
+    name: Android-Weekend
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.6
+
+      - name: Install Haxelib
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install hmm --quiet
+          haxelib run hmm install --quiet
+      - name: Create Version Tag
+        run: echo "${{github.run_id}}" > VERSION
+
+      - name: Setup Lime
+        run: |
+          haxelib run lime config ANDROID_SDK $ANDROID_HOME
+          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
+          haxelib run lime config JAVA_HOME $JAVA_HOME_17_arm64
+          haxelib run lime config ANDROID_SETUP true
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      - name: Compile
+        run: haxelib run lime build android -D finalBuild -D WEEKEND1 -final
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: androidBuild-Weekend
+          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
+          if-no-files-found: warn
   Windows:
     runs-on: windows-latest
     steps:
@@ -84,6 +122,12 @@ jobs:
 
       - name: Move Android File
         run: mv /home/runner/PsychExtended-release.apk /home/runner/PsychExtended-Android.apk
+        
+      - name: Download Android Weekend Build
+        uses: actions/download-artifact@main
+        with:
+           name: androidBuild-Weekend
+           path: /home/runner
 
       - name: Download Windows Build
         uses: actions/download-artifact@main

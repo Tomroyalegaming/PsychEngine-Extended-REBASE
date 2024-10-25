@@ -1,7 +1,7 @@
 name: Android
 on: workflow_dispatch
 jobs:
-  Android:
+  Android-ARM64:
     runs-on: macos-14
     steps:
       - name: Checkout
@@ -31,10 +31,10 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
-          name: androidBuild
+          name: androidBuild-ARM64
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
           if-no-files-found: error
-  Android-ALL:
+  Android:
     runs-on: macos-14
     steps:
       - name: Checkout
@@ -64,6 +64,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
-          name: androidBuild-FULL
+          name: androidBuild
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
           if-no-files-found: error

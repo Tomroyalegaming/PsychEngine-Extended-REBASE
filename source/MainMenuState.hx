@@ -139,7 +139,7 @@ class MainMenuState extends MusicBeatState
 			rightItem.x -= rightItem.width;
 		}
 
-        var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Psych Engine Extended v" + psychExtendedVersion, 12);
+        var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Psych Extended v" + psychExtendedVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

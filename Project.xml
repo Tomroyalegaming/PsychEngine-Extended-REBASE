@@ -45,8 +45,8 @@
 	
 	<!-- PSYCH EXTENDED CUSTOMIZATION -->
 	<section if="finalBuild">
-    	<define name="WEEKEND1" />
     	<define name="BASE_GAME_ASSETS" />
+    	<define name="INDIECROSS_ASSETS" />
 	</section>
 	<define name="HXVLC_ALLOWED" if="ios" /> <!-- If you want to use hxvlc Enable This -->
 	<define name="HXCODEC_ALLOWED" /> <!-- Same as HXVLC_ALLOWED -->
