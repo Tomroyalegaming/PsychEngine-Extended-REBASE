@@ -128,6 +128,9 @@ jobs:
         with:
            name: androidBuild-Weekend
            path: /home/runner
+           
+      - name: Move Android File
+        run: mv /home/runner/PsychExtended-release.apk /home/runner/PsychExtended-Weekend-Android.apk
 
       - name: Download Windows Build
         uses: actions/download-artifact@main
