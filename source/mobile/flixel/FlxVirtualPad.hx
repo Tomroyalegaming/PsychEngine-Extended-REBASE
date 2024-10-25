@@ -169,7 +169,9 @@ class FlxVirtualPad extends FlxSpriteGroup {
 
 		switch (Action){
 		    case E:
+		        #if mobile
 		        orgAlpha = 1;
+		        #end
 				actions.add(add(buttonE = createButton(FlxG.width - 44 * 3, FlxG.height - 125 * 3, 44 * 3, 127, "modding", 0xFF7D00, false)));
 			case A:
 				actions.add(add(buttonA = createButton(FlxG.width - 44 * 3, FlxG.height - 45 * 3, 44 * 3, 127, "a", 0xFF0000)));
