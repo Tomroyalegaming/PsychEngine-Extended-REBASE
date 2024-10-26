@@ -429,6 +429,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
 		CustomFadeTransition.nextCamera = camOther;
+		CustomFadeTransitionNOVA.nextCamera = camOther;
 
 		persistentUpdate = persistentDraw = true;
 
@@ -1427,6 +1428,7 @@ class PlayState extends MusicBeatState
 		Paths.clearUnusedMemory();
 		
 		CustomFadeTransition.nextCamera = camOther;
+		CustomFadeTransitionNOVA.nextCamera = camOther;
 		if(eventNotes.length < 1) checkEventNote();
 	}
 
@@ -4216,6 +4218,7 @@ class PlayState extends MusicBeatState
 					cancelMusicFadeTween();
 					if(FlxTransitionableState.skipNextTransIn) {
 						CustomFadeTransition.nextCamera = null;
+						CustomFadeTransitionNOVA.nextCamera = null;
 					}
 					CustomSwitchState.switchMenus('StoryMenu');
 
@@ -4279,6 +4282,7 @@ class PlayState extends MusicBeatState
 				cancelMusicFadeTween();
 				if(FlxTransitionableState.skipNextTransIn) {
 					CustomFadeTransition.nextCamera = null;
+					CustomFadeTransitionNOVA.nextCamera = null;
 				}
 				CustomSwitchState.switchMenus('Freeplay');
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
