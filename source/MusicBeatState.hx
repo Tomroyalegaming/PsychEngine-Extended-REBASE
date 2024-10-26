@@ -251,49 +251,31 @@ class MusicBeatState extends FlxUIState
 		curStep = lastChange.stepTime + Math.floor(shit);
 	}
 	
-	public static function switchState(nextState:FlxState = null) {
-		if(nextState == null) nextState = FlxG.state;
-		if(nextState == FlxG.state)
-		{
-			resetState();
+	public static function switchState(nextState:FlxState) {
+		// Custom made Trans in
+		var curState:Dynamic = FlxG.state;
+		var leState:MusicBeatState = curState;
+		if(!FlxTransitionableState.skipNextTransIn) {
+			leState.openSubState(new CustomFadeTransition(0.6, false));
+			if(nextState == FlxG.state) {
+				CustomFadeTransition.finishCallback = function() {
+					FlxG.resetState();
+				};
+				//trace('resetted');
+			} else {
+				CustomFadeTransition.finishCallback = function() {
+					FlxG.switchState(nextState);
+				};
+				//trace('changed state');
+			}
 			return;
 		}
-
-		if(FlxTransitionableState.skipNextTransIn) FlxG.switchState(nextState);
-		else startTransition(nextState);
 		FlxTransitionableState.skipNextTransIn = false;
+		FlxG.switchState(nextState);
 	}
 
 	public static function resetState() {
-		if(FlxTransitionableState.skipNextTransIn) FlxG.resetState();
-		else startTransition();
-		FlxTransitionableState.skipNextTransIn = false;
-	}
-	
-	// Custom made Trans in
-	public static function startTransition(nextState:FlxState = null)
-	{
-		if(nextState == null)
-			nextState = FlxG.state;
-
-        if (ClientPrefs.data.TransitionStyle == 'NovaFlare')
-		    FlxG.state.openSubState(new CustomFadeTransitionNOVA(0.6, false));
-		else
-		    FlxG.state.openSubState(new CustomFadeTransition(0.6, false));
-		if (ClientPrefs.data.TransitionStyle == 'NovaFlare')
-		{
-    		if(nextState == FlxG.state)
-    			CustomFadeTransitionNOVA.finishCallback = function() FlxG.resetState();
-    		else
-    			CustomFadeTransitionNOVA.finishCallback = function() FlxG.switchState(nextState);
-    	}
-    	else
-    	{
-    		if(nextState == FlxG.state)
-    			CustomFadeTransition.finishCallback = function() FlxG.resetState();
-    		else
-    			CustomFadeTransition.finishCallback = function() FlxG.switchState(nextState);
-    	}
+		MusicBeatState.switchState(FlxG.state);
 	}
 
 	public static function getState():MusicBeatState {
