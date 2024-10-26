@@ -23,16 +23,6 @@ class CustomFadeTransition extends MusicBeatSubstate {
 	var transBlack:FlxSprite;
 	var transGradient:FlxSprite;
 	var LoadBF:FlxSprite;
-	
-	var loadLeft:FlxSprite;
-	var loadRight:FlxSprite;
-	var WaterMark:FlxText;
-	var EventText:FlxText;
-	
-	var loadLeftTween:FlxTween;
-	var loadRightTween:FlxTween;
-	var EventTextTween:FlxTween;
-	var loadTextTween:FlxTween;
 
 	public function new(duration:Float, isTransIn:Bool) {
 		super();
@@ -45,6 +35,16 @@ class CustomFadeTransition extends MusicBeatSubstate {
 		
 		if (ClientPrefs.data.TransitionStyle == 'NovaFlare')
 		{
+		    var loadLeft:FlxSprite;
+        	var loadRight:FlxSprite;
+        	var WaterMark:FlxText;
+        	var EventText:FlxText;
+        	
+        	var loadLeftTween:FlxTween;
+        	var loadRightTween:FlxTween;
+        	var EventTextTween:FlxTween;
+        	var loadTextTween:FlxTween;
+        	
     		loadLeft = new FlxSprite(isTransIn ? 0 : -1280, 0).loadGraphic(Paths.image('menuExtend/Loading/loadingL'));
     		loadLeft.scrollFactor.set();
     		loadLeft.antialiasing = ClientPrefs.data.antialiasing;
