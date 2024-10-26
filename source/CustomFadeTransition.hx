@@ -8,6 +8,7 @@ class CustomFadeTransition extends FlxSubState {
 	var isTransIn:Bool = false;
 	var transBlack:FlxSprite;
 	var transGradient:FlxSprite;
+	var LoadBF:FlxSprite;
 
 	var duration:Float;
 	public function new(duration:Float, isTransIn:Bool)
@@ -35,6 +36,19 @@ class CustomFadeTransition extends FlxSubState {
 		transBlack.scrollFactor.set();
 		transBlack.screenCenter(X);
 		add(transBlack);
+		
+		if (ClientPrefs.data.TransitionStyle == 'Extended')
+    	{
+        	LoadBF = new FlxSprite(-150, 250);
+        	LoadBF.frames = Paths.getSparrowAtlas('bf running');
+        	LoadBF.animation.addByPrefix('bf running', 'bf running');
+        	LoadBF.animation.play('bf running');
+        	LoadBF.scale.x = 0.3;
+        	LoadBF.scale.y = 0.3;
+        	LoadBF.scrollFactor.set();
+        	LoadBF.antialiasing = ClientPrefs.data.antialiasing;
+        	add(LoadBF);
+    	}
 
 		if(isTransIn)
 			transGradient.y = transBlack.y - transBlack.height;
