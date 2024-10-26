@@ -1706,10 +1706,9 @@ class FunkinLua {
 			}
 
 			PlayState.cancelMusicFadeTween();
-			CustomFadeTransition.nextCamera = PlayState.instance.camOther;
-			CustomFadeTransitionNOVA.nextCamera = PlayState.instance.camOther;
-			if(FlxTransitionableState.skipNextTransIn)
-				CustomFadeTransition.nextCamera = null;
+			if (ClientPrefs.data.TransitionStyle == 'NovaFlare')
+		        CustomFadeTransitionNOVA.nextCamera = PlayState.instance.camOther;
+			if(FlxTransitionableState.skipNextTransIn && ClientPrefs.data.TransitionStyle == 'NovaFlare')
 				CustomFadeTransitionNOVA.nextCamera = null;
 
 			if(PlayState.isStoryMode)

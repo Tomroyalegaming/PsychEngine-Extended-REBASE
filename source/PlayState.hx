@@ -428,8 +428,8 @@ class PlayState extends MusicBeatState
 		grpNoteSplashes = new FlxTypedGroup<NoteSplash>(8);
 
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
-		CustomFadeTransition.nextCamera = camOther;
-		CustomFadeTransitionNOVA.nextCamera = camOther;
+		if (ClientPrefs.data.TransitionStyle == 'NovaFlare')
+		    CustomFadeTransitionNOVA.nextCamera = camOther;
 
 		persistentUpdate = persistentDraw = true;
 
@@ -1427,8 +1427,8 @@ class PlayState extends MusicBeatState
 		super.create();
 		Paths.clearUnusedMemory();
 		
-		CustomFadeTransition.nextCamera = camOther;
-		CustomFadeTransitionNOVA.nextCamera = camOther;
+		if (ClientPrefs.data.TransitionStyle == 'NovaFlare')
+		    CustomFadeTransitionNOVA.nextCamera = camOther;
 		if(eventNotes.length < 1) checkEventNote();
 	}
 
@@ -4216,8 +4216,7 @@ class PlayState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 
 					cancelMusicFadeTween();
-					if(FlxTransitionableState.skipNextTransIn) {
-						CustomFadeTransition.nextCamera = null;
+					if(FlxTransitionableState.skipNextTransIn && ClientPrefs.data.TransitionStyle == 'NovaFlare') {
 						CustomFadeTransitionNOVA.nextCamera = null;
 					}
 					CustomSwitchState.switchMenus('StoryMenu');
@@ -4280,8 +4279,7 @@ class PlayState extends MusicBeatState
 				trace('WENT BACK TO FREEPLAY??');
 				WeekData.loadTheFirstEnabledMod();
 				cancelMusicFadeTween();
-				if(FlxTransitionableState.skipNextTransIn) {
-					CustomFadeTransition.nextCamera = null;
+				if(FlxTransitionableState.skipNextTransIn && ClientPrefs.data.TransitionStyle == 'NovaFlare') {
 					CustomFadeTransitionNOVA.nextCamera = null;
 				}
 				CustomSwitchState.switchMenus('Freeplay');
