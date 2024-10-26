@@ -45,7 +45,7 @@ class MobileOptionsSubState extends BaseOptionsMenu
 	final lastStorageType:String = ClientPrefs.data.storageType;
 	#end
 	
-	var virtualpadTypes:Array<String> = ["Newest", "New", "Old"];
+	var virtualpadTypes:Array<String> = ["New", "Old"];
 	var virtualpadSkinList:Array<String> = CoolUtil.coolTextFile(Paths.getPreloadPath('images/mobilecontrols/virtualpad/virtualpadSkinList.txt'));
 	var virtualpadSkinListModsFolder:Array<String> = CoolUtil.coolTextFile(Paths.modsImages('virtualpad/virtualpadSkinList.txt'));
 	
